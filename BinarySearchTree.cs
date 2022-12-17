@@ -1,54 +1,67 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace BST
-
+namespace Day15BinarySearchTree
 {
     public class BinarySearchTree<T> where T : IComparable<T>
     {
-        public T data;
-        public BinarySearchTree<T> Left;
-        public BinarySearchTree<T> Right;
-        public BinarySearchTree(T data)
-        {
-            this.data = data;
-            this.Left = null;
-            this.Right = null;
+        public T NodeData { get; set; }
+        public BinarySearchTree<T> LeftTree { get; set; }
+        public BinarySearchTree<T> RightTree { get; set; }
 
+        public BinarySearchTree(T nodeData)
+        {
+            this.NodeData = nodeData;
+            this.LeftTree = null;
+            this.RightTree = null;
         }
-        int LeftIdx = 0, RightIdx = 0;
-        public void AddNode(T Value)
-        {
-            T NodeValue = this.data;
-            if (NodeValue.CompareTo(Value) > 0)
-            {
-                if (this.Left == null)
-                    this.Left = new BinarySearchTree<T>(Value);
+        int leftCount = 0, rightCount = 0;
+        bool result = false;
 
-                        else 
-                    this.Left.AddNode(Value);
+        public void Insert(T item)
+        {
+            T cureentNodeValue = this.NodeData;
+            if ((cureentNodeValue.CompareTo(item)) > 0)
+            {
+                if (this.LeftTree == null)
+                    this.LeftTree = new BinarySearchTree<T>(item);
+                else
+                    this.LeftTree.Insert(item);
             }
             else
             {
-                if (this.Right == null )
-                    this.Right=new BinarySearchTree<T>(Value);
-
+                if (this.RightTree == null)
+                {
+                    this.RightTree = new BinarySearchTree<T>(item);
+                }
                 else
-                    this.Right.AddNode(Value);
-
+                    this.RightTree.Insert(item);
             }
         }
+        //method to display
         public void Display()
         {
-            if(this.Left != null)
+            if (this.LeftTree != null)
             {
-                this.LeftIdx++;
-                this.Left.Display();
+                this.leftCount++;
+                this.LeftTree.Display();
             }
-            Console.WriteLine(this.data);
-            if (this.Right !=null)
+            Console.WriteLine(this.NodeData.ToString());
+            if (this.RightTree != null)
             {
-                this.RightIdx++; this.Right.Display();
+                this.rightCount++;
+                this.RightTree.Display();
             }
         }
+        //method for getting size of tree
+        public void GetSize()
+        {
+            Console.WriteLine("Size" + " " + (1 + this.leftCount + this.rightCount));
+        }
+
+
     }
 }
