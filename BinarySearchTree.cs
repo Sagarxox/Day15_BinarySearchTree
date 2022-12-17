@@ -62,6 +62,29 @@ namespace Day15BinarySearchTree
             Console.WriteLine("Size" + " " + (1 + this.leftCount + this.rightCount));
         }
 
-
+        //method for search node in BST
+        public bool Search(T element, BinarySearchTree<T> node)
+        {
+            if (node == null)
+            {
+                return false;
+            }
+            if (node.NodeData.Equals(element))
+            {
+                Console.WriteLine("Found the element in BST" + " " + node.NodeData);
+                result = true;
+            }
+            //check in left tree
+            if (element.CompareTo(node.NodeData) < 0)
+            {
+                Search(element, node.LeftTree);
+            }
+            //check in right tree
+            if (element.CompareTo(node.NodeData) > 0)
+            {
+                Search(element, node.RightTree);
+            }
+            return result;
+        }
     }
 }
