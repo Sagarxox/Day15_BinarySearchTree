@@ -1,18 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using BST;
-using System.Text;
-using System.Threading.Tasks;
-
-public class program
+﻿namespace Day15BinarySearchTree
 {
-    public static void Main (string[] args)
+    public class Program
     {
-        BST.BinarySearchTree<int> tree = new BST.BinarySearchTree<int>(56);
-        tree.AddNode(30);
-        tree.AddNode(70);
-        tree.Display();
-
+        public static void Main(string[]args)
+        {
+            BinarySearchTree<int> binarySearch = new BinarySearchTree<int>(56);
+            binarySearch.Insert(30);
+            binarySearch.Insert(70);
+            binarySearch.Insert(22);
+            binarySearch.Insert(40);
+            binarySearch.Insert(60);
+            binarySearch.Insert(95);
+            binarySearch.Insert(11);
+            binarySearch.Insert(65);
+            binarySearch.Insert(3);
+            binarySearch.Insert(16);
+            binarySearch.Insert(63);
+            binarySearch.Insert(67);
+            binarySearch.Display();
+            binarySearch.GetSize();
+        }
     }
+}
 }
   
